@@ -1,7 +1,8 @@
 import { FormSubmitButton } from "@/components/form/form-submit-button";
-import { addProduct } from "@/actions/add-product";
+import { addProduct, handleImagesUpload } from "@/actions/add-product";
 import { sizes } from "@/constants/sizes";
 import { categories } from "@/constants/categories";
+import { ImageInput } from "@/components/form/image-input";
 
 export const metadata = {
   title: "Add Product | E-Commerce",
@@ -65,14 +66,9 @@ export default function AddProductPage() {
             ))}
           </div>
         </div>
-
-        <input
-          type="text"
-          required
-          name="imageUrl"
-          placeholder="Image URL..."
-          className="input input-bordered w-full mb-3"
-        />
+        <div className="p-10 grid grid-cols-2">
+          <ImageInput />
+        </div>
         <input
           type="text"
           required

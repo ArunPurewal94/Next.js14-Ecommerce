@@ -10,7 +10,7 @@ datasource db {
 model Product {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   description String
-  imageUrl    String
+  images      Image[]
   name        String
   price       Int
   category    String
@@ -21,6 +21,12 @@ model Product {
   CartItem CartItem[]
 
   @@map("products")
+}
+
+type Image {
+  color     String
+  colorCode String
+  image     String
 }
 
 model Cart {

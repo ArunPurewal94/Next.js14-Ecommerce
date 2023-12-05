@@ -11,6 +11,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const isNew =
     Date.now() - new Date(product.createdAt).getTime() <
     1000 * 60 * 60 * 24 * 7;
+  const image = product.images.find((img) => img.image !== null);
   return (
     <Link
       href={"/products/" + product.id}
@@ -18,7 +19,11 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     >
       <figure className="relative w-full h-64">
         <Image
-          src={product.imageUrl}
+          src={
+            image
+              ? image.image
+              : "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          }
           alt={product.name}
           fill
           className="object-cover rounded-t-xl"

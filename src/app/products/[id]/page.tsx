@@ -9,6 +9,7 @@ import { PriceTag } from "@/components/price-tag";
 import { AddToCartButton } from "../components/add-to-cart-button";
 import { incrementProductQuantity, selectSize } from "@/actions/cart";
 import { SizeSelect } from "../components/size-select";
+import { ColorSelector } from "../components/color-selector";
 
 interface ProductsPageProps {
   params: {
@@ -57,14 +58,7 @@ export default async function ProductsPage({
 
   return (
     <div className="flex flex-col lg:flex-row gap-4 md:items-center">
-      <Image
-        src={product.imageUrl}
-        alt={product.name}
-        width={500}
-        height={500}
-        className="rounded-lg h-auto w-auto"
-        priority
-      />
+      {product && product.images && <ColorSelector images={product.images} />}
 
       <div>
         <h1 className="text-5xl font-bold">{product.name}</h1>
