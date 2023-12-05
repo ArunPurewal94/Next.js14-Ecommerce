@@ -1,5 +1,5 @@
 import { FormSubmitButton } from "@/components/form/form-submit-button";
-import { addProduct, handleImagesUpload } from "@/actions/add-product";
+import { addProduct } from "@/actions/add-product";
 import { sizes } from "@/constants/sizes";
 import { categories } from "@/constants/categories";
 import { ImageInput } from "@/components/form/image-input";
@@ -68,6 +68,7 @@ export default function AddProductPage() {
         </div>
         <div className="p-10 grid grid-cols-2">
           <ImageInput />
+          <input type="hidden" id="images" name="images" />
         </div>
         <input
           type="text"

@@ -1,3 +1,5 @@
+// core.ts
+
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 const f = createUploadthing();
@@ -24,6 +26,9 @@ export const ourFileRouter = {
       console.log("Upload complete for userId:", metadata.userId);
 
       console.log("file url", file.url);
+
+      // Add logic here to update the product with the uploaded image URL
+      // You need the product ID to update the product
 
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
       return { uploadedBy: metadata.userId };
