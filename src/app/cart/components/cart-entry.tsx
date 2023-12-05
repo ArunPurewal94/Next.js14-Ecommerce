@@ -21,6 +21,7 @@ export const CartEntry = ({
   setProductQuantity,
 }: CartEntryProps) => {
   const [isPending, startTransition] = useTransition();
+  const image = product.images[0];
 
   const quantityOptions: JSX.Element[] = [];
   for (let i = 1; i <= 99; i++) {
@@ -34,13 +35,16 @@ export const CartEntry = ({
   return (
     <div>
       <div className="flex flex-wrap items-center gap-3">
-        <Image
-          src={product.imageUrl}
-          alt={product.name}
-          width={200}
-          height={200}
-          className="rounded-lg"
-        />
+        {image?.image && (
+          <Image
+            src={image.image}
+            alt={product.name}
+            fill
+            className="object-cover rounded-t-xl"
+            priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        )}
         <div>
           <Link className="font-bold" href={"/products/" + product.id}>
             {product.name}
