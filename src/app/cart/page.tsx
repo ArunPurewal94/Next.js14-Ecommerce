@@ -1,7 +1,7 @@
 import { getCart } from "@/lib/cart";
 import { setProductQuantity } from "@/actions/set-quantity";
 
-import { CartEntry } from "./components/cart-entry";
+import { CartEntry } from "../../components/cart/cart-entry";
 import Link from "next/link";
 import { formatPrice } from "@/lib/utils";
 
