@@ -4,6 +4,7 @@ import { FaUser } from "react-icons/fa";
 import { searchProduct } from "@/actions/search";
 import { getCart } from "@/lib/cart";
 import { CartButton } from "./cart-button";
+import { UserButton } from "./user-button";
 
 export const Navbar = async () => {
   const cart = await getCart();
@@ -28,25 +29,7 @@ export const Navbar = async () => {
             </div>
           </form>
           <CartButton cart={cart} />
-          <div className="dropdown dropdown-end dropdown-bottom">
-            <div tabIndex={0} role="button" className="btn m-1">
-              <FaUser />
-            </div>
-            <ul
-              tabIndex={0}
-              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <Link href={"/orders"}>Your Orders</Link>
-              </li>
-              <li>
-                <Link href={"/admin"}>Admin Dashboard</Link>
-              </li>
-              <li>
-                <Link href={"/admin/add-product"}>Add Product</Link>
-              </li>
-            </ul>
-          </div>
+          <UserButton />
         </div>
       </div>
     </nav>
