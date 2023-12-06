@@ -34,7 +34,7 @@ export const ColorSelector = ({ images }: ColorSelectorProps) => {
             key={index}
             onClick={() => handleColorSelection(colorCode)}
             className={`rounded-full w-10 h-10 cursor-pointer ${
-              selectedColor === colorCode ? "border-2 border-black" : ""
+              selectedColor === colorCode ? "border-4 border-indigo-400" : ""
             }`}
             style={{ backgroundColor: colorCode }}
           />
