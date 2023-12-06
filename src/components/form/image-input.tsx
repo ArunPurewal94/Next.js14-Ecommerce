@@ -21,12 +21,12 @@ export const ImageInput = () => {
     const updatedImages = images.map((item) =>
       item.color === color ? { ...item, image: res[0]?.url } : item
     );
-    // Filter out objects where image is null
+    setImages(updatedImages);
+
     const filteredImages = updatedImages.filter(
-      (imageObj: { image: string | null }) => imageObj.image !== null
+      (imageObj) => imageObj.image !== null
     );
-    setImages(filteredImages);
-    // Update the hidden input field with the stringified images array
+
     const imagesInput = document.getElementById("images") as HTMLInputElement;
     imagesInput.value = JSON.stringify(filteredImages);
   };
