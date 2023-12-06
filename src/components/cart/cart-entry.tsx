@@ -39,8 +39,9 @@ export const CartEntry = ({
           <Image
             src={image.image}
             alt={product.name}
-            fill
-            className="object-cover rounded-t-xl"
+            height={300}
+            width={300}
+            className="object-contain rounded-xl"
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />

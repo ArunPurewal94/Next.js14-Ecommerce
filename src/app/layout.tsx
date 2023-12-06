@@ -27,7 +27,7 @@ export default function RootLayout({
         }}
       >
         <Navbar />
-        <main className="p-4 flex-1">{children}</main>
+        <main className="p-10 flex-1">{children}</main>
         <Footer />
       </body>
     </html>

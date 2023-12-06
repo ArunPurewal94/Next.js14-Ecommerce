@@ -57,7 +57,7 @@ export default async function ProductsPage({
   const firstAvailableSize = getFirstAvailableSize(product.sizes);
 
   return (
-    <div className="flex flex-col lg:flex-row gap-4 md:items-center">
+    <div className="flex flex-col lg:flex-row gap-5 md:items-center">
       {product && product.images && <ColorSelector images={product.images} />}
 
       <div>
