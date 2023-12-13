@@ -12,16 +12,17 @@ interface CartEntryProps {
   setProductQuantity: (
     productId: string,
     size: string,
-    quantity: number
+    quantity: number,
+    image: string,
+    color: string
   ) => Promise<void>;
 }
 
 export const CartEntry = ({
-  cartItem: { product, quantity, selectedSize },
+  cartItem: { product, quantity, selectedSize, selectedColor, selectedImage },
   setProductQuantity,
 }: CartEntryProps) => {
   const [isPending, startTransition] = useTransition();
-  const image = product.images[0];
 
   const quantityOptions: JSX.Element[] = [];
   for (let i = 1; i <= 99; i++) {
@@ -35,10 +36,10 @@ export const CartEntry = ({
   return (
     <div>
       <div className="flex flex-wrap items-center gap-3">
-        {image?.image && (
+        {selectedImage && (
           <Image
-            src={image.image}
-            alt={product.name}
+            src={selectedImage}
+            alt={selectedColor || ""}
             height={300}
             width={300}
             className="object-contain rounded-xl"
@@ -50,6 +51,7 @@ export const CartEntry = ({
           <Link className="font-bold" href={"/products/" + product.id}>
             {product.name}
           </Link>
+          <p>{selectedColor}</p>
           <p>{product.category}</p>
           <p>{selectedSize}</p>
           <div>Price: {formatPrice(product.price)}</div>
@@ -64,7 +66,9 @@ export const CartEntry = ({
                   await setProductQuantity(
                     product.id,
                     selectedSize,
-                    newQuantity
+                    newQuantity,
+                    selectedImage,
+                    selectedColor
                   );
                 });
               }}

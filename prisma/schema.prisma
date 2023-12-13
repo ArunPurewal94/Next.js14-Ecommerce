@@ -39,13 +39,15 @@ model Cart {
 }
 
 model CartItem {
-  id           String  @id @default(auto()) @map("_id") @db.ObjectId
-  productId    String  @db.ObjectId
-  product      Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-  quantity     Int
-  selectedSize String
-  cartId       String  @db.ObjectId
-  cart         Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  productId     String  @db.ObjectId
+  product       Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity      Int
+  selectedSize  String
+  selectedColor String
+  selectedImage String
+  cartId        String  @db.ObjectId
+  cart          Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
 
   @@map("cartitems")
 }

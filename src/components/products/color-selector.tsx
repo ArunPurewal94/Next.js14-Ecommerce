@@ -1,29 +1,39 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { selectColor } from "@/actions/cart";
 
 interface ColorSelectorProps {
   images: { color: string; colorCode: string; image: string | null }[];
+  productId: string;
 }
 
-export const ColorSelector = ({ images }: ColorSelectorProps) => {
+export const ColorSelector = ({ images, productId }: ColorSelectorProps) => {
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+  const firstUpdate = useRef(true);
+
   // Set the first image in the array as selected when the component mounts
   useEffect(() => {
-    if (images && images.length > 0) {
-      setSelectedColor(images[0].colorCode);
-      setSelectedImage(images[0].image);
+    if (firstUpdate.current) {
+      if (images && images.length > 0) {
+        setSelectedColor(images[0].colorCode);
+        setSelectedImage(images[0].image);
+      }
+      firstUpdate.current = false;
     }
   }, [images]);
 
-  const handleColorSelection = (colorCode: string) => {
-    setSelectedColor(colorCode === selectedColor ? null : colorCode);
-    const selectedImg =
-      images.find((image) => image.colorCode === colorCode)?.image || null;
-    setSelectedImage(selectedImg);
+  const handleColorSelection = (colorCode: string, image: string | null) => {
+    if (colorCode !== selectedColor) {
+      setSelectedColor(colorCode);
+      if (image) {
+        setSelectedImage(image);
+        selectColor(productId, colorCode, image);
+      }
+    }
   };
 
   return (
@@ -32,7 +42,11 @@ export const ColorSelector = ({ images }: ColorSelectorProps) => {
         {images.map(({ color, colorCode, image }, index) => (
           <div
             key={index}
-            onClick={() => handleColorSelection(colorCode)}
+            onClick={() => {
+              setSelectedColor(colorCode);
+              setSelectedImage(image);
+              handleColorSelection(colorCode, image);
+            }}
             className={`rounded-full w-10 h-10 cursor-pointer ${
               selectedColor === colorCode ? "border-4 border-indigo-400" : ""
             }`}

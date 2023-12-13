@@ -8,12 +8,17 @@ import { createCart, getCart } from "@/lib/cart";
 
 export async function incrementProductQuantity(
   productId: string,
-  size: string
+  size: string,
+  color: string,
+  image: string
 ) {
   const cart = (await getCart()) ?? (await createCart());
 
   const productInCart = cart.items.find(
-    (item) => item.productId === productId && item.selectedSize === size
+    (item) =>
+      item.productId === productId &&
+      item.selectedSize === size &&
+      item.selectedColor === color
   );
 
   if (productInCart) {
@@ -32,6 +37,8 @@ export async function incrementProductQuantity(
         productId,
         quantity: 1,
         selectedSize: size,
+        selectedColor: color,
+        selectedImage: image,
       },
     });
   }
@@ -41,4 +48,13 @@ export async function incrementProductQuantity(
 
 export async function selectSize(productId: string, size: string) {
   cookies().set(`selectedSize-${productId}`, size);
+}
+
+export async function selectColor(
+  productId: string,
+  color: string,
+  imageUrl: string
+) {
+  cookies().set(`selectedColor-${productId}`, color);
+  cookies().set(`selectedImage-${productId}`, imageUrl);
 }

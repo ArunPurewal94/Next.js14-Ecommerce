@@ -8,7 +8,9 @@ import { prisma } from "@/lib/prismadb";
 export async function setProductQuantity(
   productId: string,
   size: string,
-  quantity: number
+  quantity: number,
+  image: string,
+  color: string
 ) {
   const cart = (await getCart()) ?? (await createCart());
   const productInCart = cart.items.find(
@@ -34,6 +36,8 @@ export async function setProductQuantity(
           productId,
           quantity,
           selectedSize: size,
+          selectedColor: color,
+          selectedImage: image,
         },
       });
     }
