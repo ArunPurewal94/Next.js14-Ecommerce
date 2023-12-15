@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { CartItemWithProducts } from "@/lib/cart";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, getColorName } from "@/lib/utils";
 
 interface CartEntryProps {
   cartItem: CartItemWithProducts;
@@ -23,6 +23,10 @@ export const CartEntry = ({
   setProductQuantity,
 }: CartEntryProps) => {
   const [isPending, startTransition] = useTransition();
+
+  const selectedImageObj = product.images.find(
+    (image) => image.color === selectedColor
+  );
 
   const quantityOptions: JSX.Element[] = [];
   for (let i = 1; i <= 99; i++) {
@@ -51,7 +55,9 @@ export const CartEntry = ({
           <Link className="font-bold" href={"/products/" + product.id}>
             {product.name}
           </Link>
-          <p>{selectedColor}</p>
+          {selectedImageObj && (
+            <p>{getColorName(selectedImageObj.colorCode)}</p>
+          )}
           <p>{product.category}</p>
           <p>{selectedSize}</p>
           <div>Price: {formatPrice(product.price)}</div>

@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar/navbar";
 import { Footer } from "@/components/footer";
+import AuthProvider from "@/providers/auth-provider";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -17,19 +18,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body
-        className={outfit.className}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "100svh",
-        }}
-      >
-        <Navbar />
-        <main className="p-10 flex-1">{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body
+          className={outfit.className}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "100svh",
+          }}
+        >
+          <Navbar />
+          <main className="p-10 flex-1">{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

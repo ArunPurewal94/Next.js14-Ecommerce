@@ -27,7 +27,12 @@ export async function setProductQuantity(
     if (productInCart) {
       await prisma.cartItem.update({
         where: { id: productInCart.id },
-        data: { quantity },
+        data: {
+          quantity,
+          selectedSize: size,
+          selectedColor: color,
+          selectedImage: image,
+        },
       });
     } else {
       await prisma.cartItem.create({

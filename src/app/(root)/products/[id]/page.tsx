@@ -5,10 +5,10 @@ import { cookies } from "next/headers";
 
 import { prisma } from "@/lib/prismadb";
 import { PriceTag } from "@/components/price-tag";
-import { AddToCartButton } from "../../../components/products/add-to-cart-button";
+import { AddToCartButton } from "../../../../components/products/add-to-cart-button";
 import { incrementProductQuantity, selectSize } from "@/actions/cart";
-import { SizeSelect } from "../../../components/products/size-select";
-import { ColorSelector } from "../../../components/products/color-selector";
+import { SizeSelect } from "../../../../components/products/size-select";
+import { ColorSelector } from "../../../../components/products/color-selector";
 
 interface ProductsPageProps {
   params: {

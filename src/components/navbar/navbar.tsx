@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { FaUser } from "react-icons/fa";
 
 import { searchProduct } from "@/actions/search";
 import { getCart } from "@/lib/cart";
 import { CartButton } from "./cart-button";
-import { UserButton } from "./user-button";
+import { UserButton } from "@clerk/nextjs";
 
 export const Navbar = async () => {
   const cart = await getCart();
@@ -28,8 +27,9 @@ export const Navbar = async () => {
               />
             </div>
           </form>
+
           <CartButton cart={cart} />
-          <UserButton />
+          <UserButton afterSignOutUrl="/" />
         </div>
       </div>
     </nav>
