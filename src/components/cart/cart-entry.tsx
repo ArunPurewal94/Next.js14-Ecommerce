@@ -69,6 +69,7 @@ interface CartEntryProps {
           )}
           <p>{product.category}</p>
           <p>{selectedSize}</p>
+          {selectedColor && <p>{getColorName(selectedColor)}</p>}
           <div>Price: {formatPrice(product.price)}</div>
           <div className="my-1 flex items-center gap-2">
             Quantity:
