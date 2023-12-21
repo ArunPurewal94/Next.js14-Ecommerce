@@ -18,16 +18,19 @@ interface CartEntryProps {
   ) => Promise<void>;
 }
 
-export const CartEntry = ({
+
+  export const CartEntry = ({
   cartItem: { product, quantity, selectedSize, selectedColor, selectedImage },
   setProductQuantity,
 }: CartEntryProps) => {
   const [isPending, startTransition] = useTransition();
 
+  // Find the selected image object based on the selected color
   const selectedImageObj = product.images.find(
     (image) => image.color === selectedColor
   );
 
+  // Generate quantity options for the select dropdown
   const quantityOptions: JSX.Element[] = [];
   for (let i = 1; i <= 99; i++) {
     quantityOptions.push(
@@ -36,7 +39,13 @@ export const CartEntry = ({
       </option>
     );
   }
-
+  
+  
+  
+  
+  
+  
+  
   return (
     <div>
       <div className="flex flex-wrap items-center gap-3">
